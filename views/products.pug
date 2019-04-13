@@ -1,0 +1,11 @@
+d 
+    p Welcome to the Shop
+    a(href='/basket') Basket
+
+ul#product-list
+    each product in products
+        li#product
+        p= product.name
+        p £#{product.price}
+        button -
+        button +
