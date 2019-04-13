@@ -1,0 +1,41 @@
+{
+    "deals": [
+        {
+            "code": "MONEYOFF",
+            "discount": 5.00,
+            "type": "BASKET",
+            "conditions": {
+                "min-spend": 0.00,
+                "required-categories": []
+            }
+        },
+        {
+            "code": "MOREMONEYOFF",
+            "discount": 10.00,
+            "type": "BASKET",
+            "conditions": {
+                "min-spend": 50.00,
+                "required-categories": []
+            }
+        },
+        {
+            "code": "EVENMOREMONEYOFF",
+            "discount": 15.00,
+            "type": "BASKET",
+            "conditions": {
+                "min-spend": 75.00,
+                "required-categories": {
+                    "any-of": [
+                        "Women’s Footwear",
+                        "Men's Footwear"
+                    ]
+                }
+            }
+        },
+        {
+            "item": "Fine Stripe Short Sleeve Shirt, Green",
+            "type": "ITEM",
+            "discount": 10.00
+        }
+    ]
+}
