@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It should render pug correctly 1`] = `"<d> <p>Welcome to the Basket</p><a href=\\"/\\">Shop</a></d><p>Cart Total: £100</p>"`;
