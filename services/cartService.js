@@ -8,7 +8,14 @@ add = (product_id, cart) => {
     }
 }
 
+remove = (product_id, cart) => {
+    if (cart && cart[product_id] > 0) {
+        return cart[product_id] -1
+    }
+}
+
 
 module.exports = {
-    add
+    add,
+    remove
 }

@@ -2,7 +2,7 @@ const cartService = require('../../services/cartService')
 
 describe('.add()', () => {
     describe('when cart contains product matching product_id', () => {
-        test('returns 1 greater than currently in the cart', (done) => {
+        test('increases quantity of product in cart', (done) => {
             const cart = { '1': 1 }
             const product_id = '1'
             expect(cartService.add(product_id, cart)).toEqual(2)
@@ -18,5 +18,14 @@ describe('.add()', () => {
             done()
         })
     })
+})
 
+describe('.remove', () => {
+    describe('when cart contains product matching product_id', () => {
+        test('reduces quantity of product in basket by 1', () => {
+            const cart = { '1': 1 }
+            const product_id = '1'
+            expect(cartService.remove(product_id, cart)).toEqual(0)
+        })
+    })
 })
