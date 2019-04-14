@@ -9,4 +9,14 @@ describe('.add()', () => {
             done()
         })
     })
+
+    describe('when cart doesn\'t contain product matching product_id', () => {
+        test('adds product to cart', (done) => {
+            const cart = { }
+            const product_id = '1'
+            expect(cartService.add(product_id, cart)).toEqual(1)
+            done()
+        })
+    })
+
 })
