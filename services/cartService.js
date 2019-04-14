@@ -26,7 +26,7 @@ total = (cart) => {
                 }
             }
         }
-        return { total: total }
+        return  total
     }
 }
 

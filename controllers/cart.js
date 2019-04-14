@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const cartService = require('../services/cartService')
+// const voucherService = require('../services/voucherService')
 
 const pug = require('pug')
 const compiledFunction = pug.compileFile('./views/cart.pug')
@@ -28,7 +29,14 @@ router.post('/remove', (req, res) => {
 router.get('/', (req, res) => {
     const cart = req.session.cart
     const cartTotal = cartService.total(cart)
-    res.send(compiledFunction(cartTotal))
+    req.session.cartTotal = cartService.total(cart)
+    res.send(compiledFunction({ total: req.session.cartTotal }))
+})
+
+router.post('/discount', (req, res) => {
+    const voucherCode = req.body.voucher_code
+    req.session.discountVoucher = voucherCode
+    res.redirect('/cart')
 })
 
 module.exports = router

@@ -22,17 +22,19 @@ describe('.add()', () => {
 
 describe('.remove', () => {
     describe('when cart contains product matching product_id', () => {
-        test('reduces quantity of product in basket by 1', () => {
+        test('reduces quantity of product in basket by 1', (done) => {
             const cart = { '1': 1 }
             const product_id = '1'
             expect(cartService.remove(product_id, cart)).toEqual(0)
+            done()
         })
     })
 })
 
 describe('.total', () => {
-    test('returns the total cart price', () => {
+    test('returns the total cart price', (done) => {
         const cart = { '1': 2 }
-        expect(cartService.total(cart)).toEqual({ "total": 198 })
+        expect(cartService.total(cart)).toEqual(198)
+        done()
     })
 })
