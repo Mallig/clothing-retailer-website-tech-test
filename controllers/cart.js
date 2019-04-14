@@ -17,8 +17,8 @@ router.post('/remove', (req, res) => {
     const cart = req.session.cart
     const product_id = req.body.product_id
 
-    // cart[product_id] = cartService.remove(product_id, cart)
-
+    cart[product_id] = cartService.remove(product_id, cart)
+    console.log(cart)
     res.redirect('/')
 })
 

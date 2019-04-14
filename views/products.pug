@@ -7,6 +7,9 @@ ul#product-list
         li#product
         p= product.name
         p £#{product.price}
+        form(method='POST' action='/cart/remove')
+            input(name='product_id' type='hidden' value=product.id)
+            button -
         form(method='POST' action='/cart/add')
             input(name='product_id' type='hidden' value=product.id)
             button +
