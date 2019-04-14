@@ -4,7 +4,7 @@ const session = require('express-session')
 const app = express()
 app.use(session({secret: 'secret password', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: true}))
 
-const products = require('./routes/products')
+const products = require('./controllers/products')
 app.use('/', products)
 
 if (process.env.NODE_ENV !==  "test") {
