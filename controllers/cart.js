@@ -1,9 +1,15 @@
 const express = require('express')
 const router = express.Router()
+const cartService = require('../services/cartService')
 
 router.post('/add', (req, res) => {
-    const product_id = req.params.product_id
-    res.send()
+    req.session.cart = req.session.cart ? req.session.cart : {}
+    const cart = req.session.cart
+    const product_id = req.body.product_id
+    
+    cart[product_id] = cartService.add(product_id, cart)
+    
+    res.redirect('/')
 })
 
 module.exports = router

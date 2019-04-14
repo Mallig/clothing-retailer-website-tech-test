@@ -2,7 +2,10 @@ const express = require('express')
 const session = require('express-session')
 
 const app = express()
-app.use(session({secret: 'secret password', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: true}))
+app.use(session({secret: 'secret password', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true}))
+
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const products = require('./controllers/products')
 const cart = require('./controllers/cart')
