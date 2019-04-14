@@ -29,3 +29,10 @@ describe('.remove', () => {
         })
     })
 })
+
+describe('.total', () => {
+    test('returns the total cart price', () => {
+        const cart = { '1': 2 }
+        expect(cartService.total(cart)).toEqual({ "total": 198 })
+    })
+})
