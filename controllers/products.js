@@ -6,7 +6,6 @@ const compiledFunction = pug.compileFile('./views/products.pug')
 const products = require('../public/products')
 
 router.get('/', (req, res) => {
-    console.log(req.session.cart)
     res.send(compiledFunction(products))
 })
 
