@@ -1,10 +1,14 @@
 const productList = require('../public/products.json')
 
 add = (product_id, cart) => {
-    if (cart[product_id]) {
-        return cart[product_id] + 1
-    } else {
-        return 1
+    for (var i=0; i<productList.products.length; i++) {
+        if (cart[product_id]) {
+            if (productList.products[i].id == product_id && cart[product_id] < productList.products[i].stock) {
+                return cart[product_id] + 1
+            }
+        } else {
+            return 1
+        }
     }
 }
 

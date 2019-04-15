@@ -12,4 +12,5 @@ ul#product-list
             button -
         form(method='POST' action='/cart/add')
             input(name='product_id' type='hidden' value=product.id)
-            button +
+            if product.stock != 0
+                button +
