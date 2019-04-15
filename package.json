@@ -4,7 +4,8 @@
   "description": "tech test",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",

@@ -76,12 +76,49 @@ Node.js and Express
 Testing with Jest
 
 Packages:
- - [Dotenv](https://github.com/motdotla/dotenv): Loads environment variables for Node
  - [Pug](https://github.com/pugjs/pug) (formerly Jade): html template engine for Node
  - [Session](https://github.com/expressjs/session): Session middleware for Express
+ - [Supertest](https://github.com/visionmedia/supertest): library for testing Node HTTP servers.
 
 ## Running
 
 Make sure you have [node.js](https://nodejs.org/en/) and npm installed. Npm comes with node but if you haven't updated it in a while you can do so with the command `npm install npm@latest -g`
 
 Move into the directory and run `npm install` to set up the environment.
+
+Run the app with `npm start`, Run the tests with `npm test`
+
+## App Structure
+
+The app has two controllers, products and cart.
+
+#### Products Controller
+
+The products controller has one which renders the product list with buttons to add or remove each product to the session cart. The product list is strored in a local file and passed to a pug file to render the view. Each button for the adding and removing from the cart makes a post request to the cart controller
+
+#### Cart Controller
+
+| Route | Action |
+|-------|--------|
+| GET / | Renders cart total and voucher form |
+| POST /add | Adds product to cart |
+| POST /remove | Removes product to cart |
+| POST /discount | Applys voucher to cart |
+
+The cart is a hash object stored on the session, post requests to `/add` and `/remove` are made with a product id in the request body. The controller uses a cartService to increase/decrease the quantity of product in the cart. The `/discount` route takes the voucher code from the post request and adds it to the session.
+
+The get "/" uses the cartService to calculate the cart total and the voucherService to apply the sessions voucher to the cart.
+
+#### cartService
+
+The cartService checks the product stock before adding it to the cart, removes product from the cart, and calculates the cart total.
+
+#### voucherService
+
+The voucherService checks if a the session voucher exists in the local deals file and then checks if the conditions for said deal are met. If the voucher exixts and the conditions are met then the module will return the cart total discounted, otherwise it returns the cart total with no discounts applied
+
+## Thigs to Do
+
+Currently the cart is simply a hash object on the session, as a result it was necessary to create a cart service to handle adding/removing products and claculating the total. If the cart was an object with methods to add/remove products and a "cartTotal" variable then the code would not violate the "Ask don't tell" principle.
+
+The tests for cartController do no mock out the services, tests need to be written using spies to assert that these modules are called.
