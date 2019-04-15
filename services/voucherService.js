@@ -24,7 +24,7 @@ isValidVoucher = (deal, cart) => {
     if (deal.conditions["required-categories"]["any-of"]) {
         for (var i=0; i<Object.keys(cart).length; i++) {
             const product = productList.products.filter(product => product.id == Object.keys(cart)[i])[0]
-            if (deal.conditions["required-categories"]["any-of"].includes(product.category)) {
+            if (deal.conditions["required-categories"]["any-of"].includes(product.category) && isValid === true) {
                 isValid = true
                 return isValid
             }
