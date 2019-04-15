@@ -7,3 +7,6 @@ p Cart Total: £#{total}
 form(method='POST' action='cart/discount')
     input(name='voucher_code' type='text')
     button Apply Voucher
+
+if alert
+    p= alert

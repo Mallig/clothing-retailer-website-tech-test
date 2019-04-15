@@ -18,5 +18,6 @@ isValidVoucher = (deal, cartTotal) => {
 }
 
 module.exports = {
-    applyVoucher
+    applyVoucher,
+    isValidVoucher
 }

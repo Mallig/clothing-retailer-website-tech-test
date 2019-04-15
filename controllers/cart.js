@@ -28,11 +28,15 @@ router.post('/remove', (req, res) => {
 
 router.get('/', (req, res) => {
     const cart = req.session.cart
+    let alert
     req.session.cartTotal = cartService.total(cart)
     if (req.session.discountVoucher) {
-        req.session.cartTotal = voucherService.applyVoucher(req.session.discountVoucher, req.session.cartTotal)
+        const voucher = req.session.discountVoucher
+        const cartTotal = req.session.cartTotal
+        alert = cartTotal === voucherService.applyVoucher(voucher, cartTotal) ? 'Invalid Voucher' : 'Voucher Applied'
+        req.session.cartTotal = voucherService.applyVoucher(voucher, cartTotal)
     }
-    res.send(compiledFunction({ total: req.session.cartTotal }))
+    res.send(compiledFunction({ total: req.session.cartTotal, alert: alert }))
 })
 
 router.post('/discount', (req, res) => {
