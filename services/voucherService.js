@@ -14,10 +14,26 @@ applyVoucher = (voucherCode, cart) => {
 }
 
 isValidVoucher = (deal, cart) => {
+    let isValid = false
+
     if (deal.conditions["min-spend"] < cartService.total(cart)) {
-        return true
+        isValid = true
     }
+
+
+    if (deal.conditions["required-categories"]["any-of"]) {
+        for (var i=0; i<Object.keys(cart).length; i++) {
+            const product = productList.products.filter(product => product.id == Object.keys(cart)[i])[0]
+            if (deal.conditions["required-categories"]["any-of"].includes(product.category)) {
+                isValid = true
+                return isValid
+            }
+        }
+        isValid =  false
+    }
+    return isValid
 }
+
 
 module.exports = {
     applyVoucher,

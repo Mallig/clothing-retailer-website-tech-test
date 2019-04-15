@@ -33,8 +33,8 @@ router.get('/', (req, res) => {
     if (req.session.discountVoucher) {
         const voucher = req.session.discountVoucher
         const cartTotal = req.session.cartTotal
-        alert = cartTotal === voucherService.applyVoucher(voucher, cartTotal) ? 'Invalid Voucher' : 'Voucher Applied'
-        req.session.cartTotal = voucherService.applyVoucher(voucher, cartTotal)
+        alert = cartTotal === voucherService.applyVoucher(voucher, cart) ? 'Invalid Voucher' : 'Voucher Applied'
+        req.session.cartTotal = voucherService.applyVoucher(voucher, cart)
     }
     res.send(compiledFunction({ total: req.session.cartTotal, alert: alert }))
 })
